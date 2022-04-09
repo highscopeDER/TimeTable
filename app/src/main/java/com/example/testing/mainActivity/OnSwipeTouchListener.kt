@@ -1,11 +1,10 @@
 package com.example.testing.mainActivity
 
-import android.content.Context
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 
-open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
+open class OnSwipeTouchListener : View.OnTouchListener {
 
     private val gestureDetector = GestureDetector(GestureListener())
 
@@ -27,7 +26,6 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
             return true
         }
 
-
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
             val result = false
             try {
@@ -45,7 +43,6 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
-
             return result
         }
     }
@@ -57,8 +54,4 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
     open fun onSwipeRight() {}
 
     open fun onSwipeLeft() {}
-
-    open fun onSwipeTop() {}
-
-    open fun onSwipeBottom() {}
-    }
+}

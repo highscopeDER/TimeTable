@@ -45,7 +45,7 @@ class Days : MvpAppCompatFragment(), DaysPresenterInterface {
         previousDayTextView.setOnClickListener {  presenter.changeCurrentDay(false) }
         nextDayTextView.setOnClickListener {  presenter.changeCurrentDay(true) }
 
-        lessonsListRecyclerView.setOnTouchListener(object: OnSwipeTouchListener(context){
+        lessonsListRecyclerView.setOnTouchListener(object: OnSwipeTouchListener() {
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 previousDayTextView.callOnClick()

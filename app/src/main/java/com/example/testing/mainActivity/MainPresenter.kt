@@ -1,7 +1,6 @@
 package com.example.testing.mainActivity
 
 import com.example.testing.model.Grades
-import com.example.testing.model.Model
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
