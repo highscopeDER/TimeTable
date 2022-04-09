@@ -35,7 +35,7 @@ class Days : MvpAppCompatFragment(), DaysPresenterInterface {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        previousDayTextView = view.findViewById(R.id.previosDay)
+        previousDayTextView = view.findViewById(R.id.previousDay)
         currentDayTextView = view.findViewById(R.id.currentDay)
         nextDayTextView = view.findViewById(R.id.nextDay)
         progressBarView = view.findViewById(R.id.progressBar)

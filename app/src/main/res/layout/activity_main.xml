@@ -13,25 +13,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
         <ImageButton
-                android:id="@+id/menuButton"
-                android:layout_width="50dp"
-                android:layout_height="36dp"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_menu_icon"
-                android:contentDescription="@string/menu" />
+            android:id="@+id/menuButton"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/menu"
+            android:src="@drawable/ic_menu_icon" />
+
         <ToggleButton
-                android:id="@+id/themeSwitch"
-                android:layout_width="50dp"
-                android:disabledAlpha="0"
-                android:layout_height="36dp"
-                android:textOff=""
-                android:textOn=""
-                android:buttonTint="@color/green"
-                android:button="@drawable/theme_switcher_shape"
-                android:layout_alignParentEnd="true"
-                android:background="@android:color/transparent"
-                />
+            android:id="@+id/themeSwitch"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:button="@drawable/theme_switcher_shape"
+            android:buttonTint="@color/orange"
+            android:disabledAlpha="0"
+            android:textOff=""
+            android:textOn="" />
     </RelativeLayout>
 
 
