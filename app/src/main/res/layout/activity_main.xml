@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".mainActivity.MainActivity"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="50dp"
+                android:layout_height="36dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_menu_icon"
+                android:contentDescription="@string/menu" />
+        <ToggleButton
+                android:id="@+id/themeSwitch"
+                android:layout_width="50dp"
+                android:disabledAlpha="0"
+                android:layout_height="36dp"
+                android:textOff=""
+                android:textOn=""
+                android:buttonTint="@color/green"
+                android:button="@drawable/theme_switcher_shape"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                />
+    </RelativeLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/daysFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+</LinearLayout>
+
+
+

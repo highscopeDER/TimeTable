@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="menu">menu</string>
+    <string name="days_monday">Понедельник</string>
+    <string name="days_tuesday">Вторник</string>
+    <string name="days_wednesday">Среда</string>
+    <string name="days_thursday">Четверг</string>
+    <string name="days_friday">Пятница</string>
+    <string name="days_saturday">Суббота</string>
+
+    <string-array name="grades">
+        <item>11 Физико-Математический</item>
+        <item>11 Физико-Химический</item>
+        <item>11 Информационно-Математический</item>
+    </string-array>
+
+    <string name="saveClassButtonText">Сохранить</string>
+    <string name="chooseClassTextViewText">Выберете класс</string>
+</resources>
