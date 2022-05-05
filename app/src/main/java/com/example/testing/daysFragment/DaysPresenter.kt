@@ -1,5 +1,6 @@
 package com.example.testing.daysFragment
 
+import com.example.testing.mainActivity.GRADE
 import com.example.testing.model.Model
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,7 @@ import moxy.MvpPresenter
 import java.util.*
 
 @InjectViewState
-class DaysPresenter() : MvpPresenter<DaysPresenterInterface>() {
+class DaysPresenter : MvpPresenter<DaysPresenterInterface>() {
 
     var const_grade: String = "11-3"
     private lateinit var currentDay: DaysEnum
@@ -26,7 +27,7 @@ class DaysPresenter() : MvpPresenter<DaysPresenterInterface>() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 modelsList = withContext(coroutineContext){
-                    Model.getLessons(const_grade)
+                    Model.getLessons(GRADE)
                 }
                 val newList = modelsList.find { model -> model.date == currentDay.current }
                 if (newList != null){

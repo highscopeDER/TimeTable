@@ -44,6 +44,8 @@ class MenuBottomSheet(context: Context) : BottomSheetDialog(context) {
                 .putString("grade", grade.value)
                 .apply()
 
+            GRADE = grade.value
+
             dismiss()
         }
     }

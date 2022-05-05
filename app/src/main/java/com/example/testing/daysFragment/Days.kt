@@ -11,17 +11,18 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testing.R
+import com.example.testing.mainActivity.GRADE
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
-class Days(grade: String) : MvpAppCompatFragment(), DaysPresenterInterface {
+class Days : MvpAppCompatFragment(), DaysPresenterInterface {
     @InjectPresenter
     lateinit var presenter: DaysPresenter
-    val GRADE = grade
     private lateinit var previousDayTextView: TextView
     private lateinit var currentDayTextView: TextView
     private lateinit var nextDayTextView: TextView
     private lateinit var progressBarView: ProgressBar
+    lateinit var gradeTextView: TextView
     private lateinit var lessonsListRecyclerView: RecyclerView
     private val lessonsListRecyclerViewAdapter = LessonsListRecyclerViewAdapter()
 
@@ -40,6 +41,7 @@ class Days(grade: String) : MvpAppCompatFragment(), DaysPresenterInterface {
         currentDayTextView = view.findViewById(R.id.currentDay)
         nextDayTextView = view.findViewById(R.id.nextDay)
         progressBarView = view.findViewById(R.id.progressBar)
+        gradeTextView = view.findViewById(R.id.gradeTextView)
         lessonsListRecyclerView = view.findViewById(R.id.lessonsListRecyclerView)
         lessonsListRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         lessonsListRecyclerView.adapter = lessonsListRecyclerViewAdapter
@@ -75,6 +77,12 @@ class Days(grade: String) : MvpAppCompatFragment(), DaysPresenterInterface {
         nextDayTextView.text = day.next
         if (newLessonsList != null) {
             lessonsListRecyclerViewAdapter.changeLessons(newLessonsList)
+        }
+        gradeTextView.text = when(GRADE){
+            "11-3" -> "11Б инф-мат"
+            "11-2" -> "11А физ-хим"
+            "11-1" -> "11А физ-мат"
+            else -> "11Б инф-мат"
         }
     }
 

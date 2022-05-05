@@ -10,12 +10,10 @@ import androidx.fragment.app.FragmentManager
 import com.example.testing.R
 import com.example.testing.daysFragment.Days
 import com.example.testing.daysFragment.DaysPresenterInterface
-import com.example.testing.model.Grades
-import com.example.testing.model.Model
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
+
+var GRADE = "11-3"
 
 class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
 
@@ -41,7 +39,7 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
         themeSwitcherButton = findViewById(R.id.themeSwitch)
         menuButton = findViewById(R.id.menuButton)
         fragmentManager = supportFragmentManager
-        daysFragment = Days("11-3")
+        daysFragment = Days()
         fragmentManager.beginTransaction().replace(R.id.daysFrame, daysFragment as Fragment).commit()
         initThemeListener()
         initMenu()
@@ -50,12 +48,8 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
     private fun initMenu(){
         val bottomSheetMenuDialog = MenuBottomSheet(this)
         bottomSheetMenuDialog.setOnDismissListener {
-            val grade = getGrade()
-            if (grade != null){
-                daysFragment = Days(grade)
+                daysFragment = Days()
                 fragmentManager.beginTransaction().replace(R.id.daysFrame, daysFragment as Fragment).commit()
-            }
-
         }
         menuButton.setOnClickListener{  //bind button that opens menu (bottomSheetDialog)
             bottomSheetMenuDialog.show()
