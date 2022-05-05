@@ -10,8 +10,9 @@ import moxy.MvpPresenter
 import java.util.*
 
 @InjectViewState
-class DaysPresenter : MvpPresenter<DaysPresenterInterface>() {
+class DaysPresenter() : MvpPresenter<DaysPresenterInterface>() {
 
+    var const_grade: String = "11-3"
     private lateinit var currentDay: DaysEnum
     private lateinit var modelsList: List<Model>
 
@@ -25,7 +26,7 @@ class DaysPresenter : MvpPresenter<DaysPresenterInterface>() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 modelsList = withContext(coroutineContext){
-                    Model.getLessons("11-3")
+                    Model.getLessons(const_grade)
                 }
                 val newList = modelsList.find { model -> model.date == currentDay.current }
                 if (newList != null){

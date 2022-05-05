@@ -5,5 +5,11 @@ import retrofit2.http.GET
 
 interface APIService {
     @GET("timetable?klass=11-3")
-    suspend fun getData(): Response<List<Model>>
+    suspend fun getDataINF(): Response<List<Model>>
+
+    @GET("timetable?klass=11-2")
+    suspend fun getDataPHYS(): Response<List<Model>>
+
+    @GET("timetable?klass=11-1")
+    suspend fun getDataCHEM(): Response<List<Model>>
 }

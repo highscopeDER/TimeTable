@@ -11,17 +11,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testing.R
-import com.example.testing.mainActivity.OnSwipeTouchListener
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 
-class Days : MvpAppCompatFragment(), DaysPresenterInterface {
+class Days(grade: String) : MvpAppCompatFragment(), DaysPresenterInterface {
     @InjectPresenter
     lateinit var presenter: DaysPresenter
+    val GRADE = grade
     private lateinit var previousDayTextView: TextView
     private lateinit var currentDayTextView: TextView
     private lateinit var nextDayTextView: TextView
-    lateinit var progressBarView: ProgressBar
+    private lateinit var progressBarView: ProgressBar
     private lateinit var lessonsListRecyclerView: RecyclerView
     private val lessonsListRecyclerViewAdapter = LessonsListRecyclerViewAdapter()
 
@@ -35,6 +35,7 @@ class Days : MvpAppCompatFragment(), DaysPresenterInterface {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.const_grade = GRADE
         previousDayTextView = view.findViewById(R.id.previousDay)
         currentDayTextView = view.findViewById(R.id.currentDay)
         nextDayTextView = view.findViewById(R.id.nextDay)
@@ -80,4 +81,5 @@ class Days : MvpAppCompatFragment(), DaysPresenterInterface {
     override fun showError(errorMessage: String) {
         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
+
 }

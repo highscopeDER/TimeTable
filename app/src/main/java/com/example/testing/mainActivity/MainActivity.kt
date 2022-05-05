@@ -10,6 +10,9 @@ import androidx.fragment.app.FragmentManager
 import com.example.testing.R
 import com.example.testing.daysFragment.Days
 import com.example.testing.daysFragment.DaysPresenterInterface
+import com.example.testing.model.Grades
+import com.example.testing.model.Model
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
@@ -22,6 +25,7 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
     private  val SAVED_THEME = "darkTheme"
     private val PREFS_NAME = "prefs"
     private val THEME_LIGHT = 0
+    private val GRADES_NAME = "grades"
     private val THEME_DARK = 1
     private lateinit var menuButton: ImageButton
     private lateinit var themeSwitcherButton: ToggleButton
@@ -37,33 +41,26 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
         themeSwitcherButton = findViewById(R.id.themeSwitch)
         menuButton = findViewById(R.id.menuButton)
         fragmentManager = supportFragmentManager
-        daysFragment = Days()
+        daysFragment = Days("11-3")
         fragmentManager.beginTransaction().replace(R.id.daysFrame, daysFragment as Fragment).commit()
         initThemeListener()
         initMenu()
     }
 
     private fun initMenu(){
-        val bottomSheetMenuDialog = BottomSheetDialog(this)
-        val menuView = layoutInflater.inflate(R.layout.bottom_sheet_menu, null)
-        bottomSheetMenuDialog.setCancelable(false)
-        bottomSheetMenuDialog.setContentView(menuView)
-        val gradePickerSpinner = menuView.findViewById<Spinner>(R.id.gradePicker)
-        initMenuSpinner(gradePickerSpinner)
+        val bottomSheetMenuDialog = MenuBottomSheet(this)
+        bottomSheetMenuDialog.setOnDismissListener {
+            val grade = getGrade()
+            if (grade != null){
+                daysFragment = Days(grade)
+                fragmentManager.beginTransaction().replace(R.id.daysFrame, daysFragment as Fragment).commit()
+            }
 
-        menuView.findViewById<Button>(R.id.saveButton).setOnClickListener {
-            presenter.setGrade(gradePickerSpinner.selectedItem.toString())
-            bottomSheetMenuDialog.dismiss()
         }
         menuButton.setOnClickListener{  //bind button that opens menu (bottomSheetDialog)
             bottomSheetMenuDialog.show()
         }
-    }
 
-    private fun initMenuSpinner(view: Spinner){
-        ArrayAdapter.createFromResource(this, R.array.grades, android.R.layout.simple_spinner_item).also {
-            arrayAdapter ->  view.adapter = arrayAdapter
-        }
     }
 
     private fun initThemeListener(){
@@ -98,5 +95,7 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
     private fun getSavedTheme() = prefs.getInt(SAVED_THEME, THEME_LIGHT)
 
     private fun saveTheme(theme: Int) = prefs.edit().putInt(SAVED_THEME, theme).apply()
+
+    private fun getGrade(): String? = prefs.getString(GRADES_NAME, "11-3")
 
 }

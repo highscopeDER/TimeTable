@@ -13,6 +13,8 @@ data class Model(
 ) {
     companion object {
 
+        var g: String = "11-3"
+
         private val retrofit = Retrofit.Builder()
             .baseUrl("https://ptl-timetable-app.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -22,7 +24,12 @@ data class Model(
 
         suspend fun getLessons(grade: String): List<Model> {
             val result: Deferred<List<Model>> = CoroutineScope(Dispatchers.IO).async {
-                val response = service.getData()
+                val response = when(grade){
+                    "11-3" -> service.getDataINF()
+                    "11-2" -> service.getDataPHYS()
+                    "11-1" -> service.getDataCHEM()
+                    else -> service.getDataINF()
+                }
                 val res: MutableList<Model> = mutableListOf()
                     if (response.isSuccessful) {
                         val items = response.body()

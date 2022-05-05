@@ -15,5 +15,5 @@
     </string-array>
 
     <string name="saveClassButtonText">Сохранить</string>
-    <string name="chooseClassTextViewText">Выберете класс</string>
+    <string name="chooseClassTextViewText">Выберите класс</string>
 </resources>
