@@ -6,21 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testing.R
+import com.example.testing.model.TimeList
 
 class LessonsListRecyclerViewAdapter : RecyclerView.Adapter<LessonsListRecyclerViewAdapter.ViewHolder>() {
 
     var lessonsList: List<String> = listOf()
 
-    private val timeList: List<Pair<String, String>> = listOf(
-        "8:30" to "9:10",
-        "9:20" to "10:00",
-        "10:10" to "10:50",
-        "11:05" to "11:45",
-        "12:05" to "12:45",
-        "13:25" to "14:05",
-        "14:15" to "14:55",
-        "15:00" to "15:40",
-    )
+    private var timeList: List<Pair<String, String>> = listOf()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val timeStartTextView: TextView = view.findViewById(R.id.timeStart)
@@ -39,8 +31,12 @@ class LessonsListRecyclerViewAdapter : RecyclerView.Adapter<LessonsListRecyclerV
         holder.lessonTextView.text = lessonsList[position]
     }
 
-    fun changeLessons(newList: List<String>){
+    fun changeLessons(newList: List<String>, day: DaysEnum){
         lessonsList = newList
+        timeList = when(day){
+            DaysEnum.SATURDAY -> TimeList.SATURDAY.values
+            else -> TimeList.MAIN.values
+        }
         notifyDataSetChanged()
     }
 

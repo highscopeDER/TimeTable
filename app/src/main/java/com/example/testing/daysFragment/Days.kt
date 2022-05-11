@@ -76,7 +76,7 @@ class Days : MvpAppCompatFragment(), DaysPresenterInterface {
         previousDayTextView.text = day.previous
         nextDayTextView.text = day.next
         if (newLessonsList != null) {
-            lessonsListRecyclerViewAdapter.changeLessons(newLessonsList)
+            lessonsListRecyclerViewAdapter.changeLessons(newLessonsList, day)
         }
         gradeTextView.text = when(GRADE){
             "11-3" -> "11Б инф-мат"

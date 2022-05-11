@@ -23,7 +23,6 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
     private  val SAVED_THEME = "darkTheme"
     private val PREFS_NAME = "prefs"
     private val THEME_LIGHT = 0
-    private val GRADES_NAME = "grades"
     private val THEME_DARK = 1
     private lateinit var menuButton: ImageButton
     private lateinit var themeSwitcherButton: ToggleButton
@@ -89,7 +88,5 @@ class MainActivity : MvpAppCompatActivity(), MainPresenterInterface {
     private fun getSavedTheme() = prefs.getInt(SAVED_THEME, THEME_LIGHT)
 
     private fun saveTheme(theme: Int) = prefs.edit().putInt(SAVED_THEME, theme).apply()
-
-    private fun getGrade(): String? = prefs.getString(GRADES_NAME, "11-3")
 
 }
